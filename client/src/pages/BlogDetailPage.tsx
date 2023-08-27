@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
+
 
 interface IBlog{
     id: string;
@@ -11,9 +11,21 @@ interface IBlog{
     date: string,
     href: string
 }
-const BlogDetailPage :React.FC<{blogs: IBlog[]}> = ({blogs}) => {
-    const {blog_id} = useParams<{blog_id: string}>();
-    const blog = blogs?.find(b => b.id == blog_id);
+interface Props {
+  blogs: Blog[];
+  match: {
+    params: {
+      id: string;
+    };
+  };
+}
+const BlogDetailPage :React.FC<Props> = ({blogs,match}) => {
+    const { id } = match.params;
+    const blog = blogs?.find(b => b.id == id);
+
+    if (!blog) {
+        return <div>Blog not found.</div>;
+      }
   return (
     <div>
         <article>
