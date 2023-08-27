@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 interface IBlog{
-        id: string;
+        id: number;
         title: string,
         desc: string,
         img: string,

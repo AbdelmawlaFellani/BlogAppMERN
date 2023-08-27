@@ -2,7 +2,7 @@ import React from 'react'
 import { useParams } from 'react-router-dom';
 
 interface IBlog{
-    id: string;
+    id: number;
     title: string,
     desc: string,
     img: string,
@@ -12,16 +12,11 @@ interface IBlog{
     href: string
 }
 interface Props {
-  blogs: Blog[];
-  match: {
-    params: {
-      id: string;
-    };
-  };
-}
+    blogs: IBlog[]; // Use the correct interface name here
+  }
 const BlogDetailPage :React.FC<Props> = ({blogs}) => {
-    const { id } = useParams<{ id: string }>();
-    const blog = blogs?.find(b => b.id === id);
+    const { id } = useParams<{ id: number }>();
+    const blog = blogs?.find(b => b.id == id);
 
     if (!blog) {
         return <div>Blog not found.</div>;
